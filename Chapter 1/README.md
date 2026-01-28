@@ -10,6 +10,15 @@ Under Linux Enviornment (in `c_thread_pool`)
 mkdir src include tests
 touch Makefile src/main.c src/thread_pool.c include/thread_pool.h
 ```
+Should look like
+```
+Makefile
+include/
+    thread_pool.h
+src/
+    main.c
+    thread_pool.c
+```
 ### 2. Define Header File
 Open `include/thread_pool.h`. We have to define 2 kernel structure: `task` and `pool`.  
 (User can know how much the memory is needed by good definition of Struct)
