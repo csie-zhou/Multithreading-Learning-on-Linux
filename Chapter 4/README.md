@@ -1,4 +1,4 @@
-# Chapter 4. Spawning Threads (Multithreading)
+# Chapter 4. Spawning Threads (Concurrent Execute)
 From now on, our program is not executing Sequentially, but **Concurrently** with 5 threads (1 Main Thread + 4 Worker Threads).
 ## Key Tasks
 1. Implement `worker` function: let Worker Thread taking tasks and consuming tasks.
