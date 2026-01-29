@@ -157,3 +157,18 @@ int thread_pool_add(thread_pool_t *pool, void (*function)(void *), void *argumen
     return 0;
 }
 
+int thread_pool_destroy(thread_pool_t *pool) {
+    if (pool == NULL) return -1;
+
+    /* Release resource (Order Matters!!!) */
+    /* From pthread.h library */
+    pthread_mutex_destroy(&(pool->lock));
+    pthread_cond_destroy(&(pool->notify));
+
+    /* Free Memory */
+    free(pool->queue);
+    free(pool->threads);
+    free(pool);
+    
+    return 0;
+}
