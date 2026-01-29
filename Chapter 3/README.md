@@ -43,13 +43,15 @@ void heavy_calculation(void *arg)
 }
 ```
 
-### 3. Implement Haep Allocation
-Copy paste `src/main.c` for this chapter:
+### 3. Add Header File
+Add this header file in `src/main.c`:
 ```C
-#include <stdio.h>
 #include <stdlib.h>  // Library for malloc & free
-#include "thread_pool.h"
+```
 
+### 4. Implement Haep Allocation
+Modify the main fuction in `src/main.c` for this chapter:
+```C
 int main() {
     printf("Starting Day 3: Memory Safety Test...\n");
 
@@ -98,7 +100,7 @@ int main() {
 }
 ```
 
-### 4. Execute and Test
+### 5. Execute and Test
 1. Compile
 ```
 make
