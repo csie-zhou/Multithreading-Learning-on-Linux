@@ -151,7 +151,7 @@ int main() {
 }
 ```
 
-### 4. Build and Test
+### 4. Execute and Test
 1. Compile
 ```
 make
