@@ -50,7 +50,7 @@ int main() {
     for (int i = 0; i < task_count; i++)
     {
         /* If Queue is full, there will be add error. Use while retry */
-        while (thread_pool_add(pool, deposit_task_safe, NULL) != 0)
+        while (thread_pool_add(pool, deposit_task, NULL) != 0)
         {
             usleep(100);
         }
