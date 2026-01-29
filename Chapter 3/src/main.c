@@ -2,6 +2,27 @@
 #include <stdlib.h>  // Library for malloc & free
 #include "thread_pool.h"
 
+typedef struct {
+    int operator_id;
+    int operand_a;
+    int operand_b;
+} math_args_t;
+
+void heavy_calculation(void *arg)
+{
+    /* 1. Let void* be the desired struct pointer */
+    math_args_t *args = (math_args_t *)arg;
+
+    /* 2. Do the calculation */
+    int result = args->operand_a + args->operand_b;
+
+    printf("  [Worker] Task %d: %d + %d = %d\n", args->operator_id, args->operand_a, args->operand_b, result);
+
+    /* 3. IMPORTANT: free memory */
+    /* Cause we get variables from malloc, need to free after used */
+    free(args);
+}
+
 int main() {
     printf("Starting Day 3: Memory Safety Test...\n");
 
