@@ -5,6 +5,7 @@
 
 /* --- Global variable (eg. bank account) --- */
 int g_balance = 0;
+pthread_mutex_t g_balance_lock = PTHREAD_MUTEX_INITIALIZER; // Add this lock to ensure no race condition
 
 /* --- An Unsafe task with no locks --- */
 void deposit_task(void *arg)
@@ -18,6 +19,17 @@ void deposit_task(void *arg)
     // usleep(1); // If no race condition, open this line
     local_balance += 1;
     g_balance = local_balance;
+}
+
+/* --- Safe task with lock --- */
+void deposit_task_safe(void *arg)
+{
+    (void)arg; // Ignore arguments
+
+    /* No Race Condition */
+    pthread_mutex_lock(&(g_balance_lock));
+    g_balance++;
+    pthread_mutex_unlock(&(g_balance_lock));
 }
 
 int main() {
