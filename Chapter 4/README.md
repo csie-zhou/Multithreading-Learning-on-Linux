@@ -62,7 +62,7 @@ Now we have `thread_pool_worker`, we have to modify `create` fucntion as it runs
 
 Modify `thread_pool_create` in `src/thread_pool.c`. Find the annotation of `/* TODO: Chapter 4... */`, paste this:
 ```C
-    /* TODO: Day 4: Call pthread_create to activate worker thread */
+    /* TODO: Chapter 4. Call pthread_create to activate worker thread */
     for (int i = 0; i < thread_count; i++)
     {
         /* * pthread_create parameter:
