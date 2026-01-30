@@ -73,6 +73,11 @@ clean:
 ```
 Command Line in Makefile (Ex. `&(CC)` and `rm` ...), indent should be **Tab**, not space.  
 
+#### **KEY**
+- `-MMD`: Generate dependency list
+- `MP`: Make phony targets (avoid make error when delete header)
+- `include $(DEPS)`: Read the created list
+
 ## Test Again
 ### 1. Compile
 ```
