@@ -1,0 +1,39 @@
+#ifndef THREAD_POOL_H
+#define THREAD_POOL_H
+
+#include <pthread.h>
+#include <stdatomic.h> // <--- Chapter 10. Add library of C11 Atomic
+
+typedef struct
+{
+    void (*function)(void *);
+    void *argument;
+} thread_task_t;
+
+/*  2. Define thread pool structure
+    With Sync (Lock/Cond), Ring Buffer(Task Queue) and array of threads
+*/
+typedef struct
+{
+    pthread_mutex_t lock;  // Mutex Lock of Queue
+    pthread_cond_t notify; // Conditional Variable of worker thread
+    pthread_t *threads;    // Array of thread ID (Dynamic allocate)
+    thread_task_t *queue;  // Task Queue
+    int thread_count;      // Numbers of threads
+    int queue_size;        // Size of Queue
+    int head;              // Ring Buffer Head (taking next task)
+    int tail;              // Ring Buffer Tail (adding a task)
+    int count;             // Number of threads
+    int shutdown;          // Flag (0: operate, 1: shutdown)
+
+    /* TODO: Chapter 10. Add atomic counter */
+    /* _Atomic is keyword in C11, ensure the variable doing ++ -- is atomic exectued */
+    atomic_int task_completed;
+} thread_pool_t;
+
+/* API Declaration */
+thread_pool_t *thread_pool_create(int thread_count, int queue_size);
+int thread_pool_add(thread_pool_t *pool, void (*function)(void *), void *argument);
+int thread_pool_destroy(thread_pool_t *pool);
+
+#endif
