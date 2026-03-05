@@ -1,4 +1,4 @@
-# RT-Scheduler — Real-Time Task Scheduler on Linux
+# Chapter 11. RT-Scheduler — Real-Time Task Scheduler on Linux
 
 A preemptive, fixed-priority real-time task scheduler implemented in C using POSIX threads and `CLOCK_MONOTONIC`. Demonstrates core RTOS concepts — periodic task scheduling, deadline monitoring, and the Priority Inheritance Protocol (PIP) — entirely in software on Linux/macOS (via Docker).
 
